@@ -1,0 +1,776 @@
+[
+  {
+    "region": "Ariyalur",
+    "destination": "Ariyalur",
+    "attraction": "Gangaikonda Cholapuram",
+    "image_1": "/destinations/ariyalur/1.jpg",
+    "image_2": "/destinations/ariyalur/2.jpg",
+    "image_3": "/destinations/ariyalur/3.jpg",
+    "search_query": "Gangaikonda Cholapuram, Ariyalur, India travel"
+  },
+  {
+    "region": "Chengalpattu",
+    "destination": "Chengalpattu",
+    "attraction": "Mahabalipuram Shore Temple",
+    "image_1": "/destinations/chengalpattu/1.jpg",
+    "image_2": "/destinations/chengalpattu/2.jpg",
+    "image_3": "/destinations/chengalpattu/3.jpg",
+    "search_query": "Mahabalipuram Shore Temple, Chengalpattu, India travel"
+  },
+  {
+    "region": "Chennai",
+    "destination": "Chennai",
+    "attraction": "Marina Beach",
+    "image_1": "/destinations/chennai/1.jpg",
+    "image_2": "/destinations/chennai/2.jpg",
+    "image_3": "/destinations/chennai/3.jpg",
+    "search_query": "Marina Beach, Chennai, India travel"
+  },
+  {
+    "region": "Coimbatore",
+    "destination": "Coimbatore",
+    "attraction": "Marudamalai Temple",
+    "image_1": "/destinations/coimbatore/1.jpg",
+    "image_2": "/destinations/coimbatore/2.jpg",
+    "image_3": "/destinations/coimbatore/3.jpg",
+    "search_query": "Marudamalai Temple, Coimbatore, India travel"
+  },
+  {
+    "region": "Cuddalore",
+    "destination": "Cuddalore",
+    "attraction": "Pichavaram Mangrove Forest",
+    "image_1": "/destinations/cuddalore/1.jpg",
+    "image_2": "/destinations/cuddalore/2.jpg",
+    "image_3": "/destinations/cuddalore/3.jpg",
+    "search_query": "Pichavaram Mangrove Forest, Cuddalore, India travel"
+  },
+  {
+    "region": "Dharmapuri",
+    "destination": "Dharmapuri",
+    "attraction": "Hogenakkal Falls",
+    "image_1": "/destinations/dharmapuri/1.jpg",
+    "image_2": "/destinations/dharmapuri/2.jpg",
+    "image_3": "/destinations/dharmapuri/3.jpg",
+    "search_query": "Hogenakkal Falls, Dharmapuri, India travel"
+  },
+  {
+    "region": "Dindigul",
+    "destination": "Dindigul",
+    "attraction": "Kodaikanal",
+    "image_1": "/destinations/dindigul/1.jpg",
+    "image_2": "/destinations/dindigul/2.jpg",
+    "image_3": "/destinations/dindigul/3.jpg",
+    "search_query": "Kodaikanal, Dindigul, India travel"
+  },
+  {
+    "region": "Erode",
+    "destination": "Erode",
+    "attraction": "Bhavanisagar Dam",
+    "image_1": "/destinations/erode/1.jpg",
+    "image_2": "/destinations/erode/2.jpg",
+    "image_3": "/destinations/erode/3.jpg",
+    "search_query": "Bhavanisagar Dam, Erode, India travel"
+  },
+  {
+    "region": "Kallakurichi",
+    "destination": "Kallakurichi",
+    "attraction": "Kalvarayan Hills",
+    "image_1": "/destinations/kallakurichi/1.jpg",
+    "image_2": "/destinations/kallakurichi/2.jpg",
+    "image_3": "/destinations/kallakurichi/3.jpg",
+    "search_query": "Kalvarayan Hills, Kallakurichi, India travel"
+  },
+  {
+    "region": "Kancheepuram",
+    "destination": "Kancheepuram",
+    "attraction": "Kailasanathar Temple",
+    "image_1": "/destinations/kancheepuram/1.jpg",
+    "image_2": "/destinations/kancheepuram/2.jpg",
+    "image_3": "/destinations/kancheepuram/3.jpg",
+    "search_query": "Kailasanathar Temple, Kancheepuram, India travel"
+  },
+  {
+    "region": "Kanyakumari",
+    "destination": "Kanyakumari",
+    "attraction": "Vivekananda Rock Memorial",
+    "image_1": "/destinations/kanyakumari/1.jpg",
+    "image_2": "/destinations/kanyakumari/2.jpg",
+    "image_3": "/destinations/kanyakumari/3.jpg",
+    "search_query": "Vivekananda Rock Memorial, Kanyakumari, India travel"
+  },
+  {
+    "region": "Karur",
+    "destination": "Karur",
+    "attraction": "Mayuranathaswamy Temple",
+    "image_1": "/destinations/karur/1.jpg",
+    "image_2": "/destinations/karur/2.jpg",
+    "image_3": "/destinations/karur/3.jpg",
+    "search_query": "Mayuranathaswamy Temple, Karur, India travel"
+  },
+  {
+    "region": "Krishnagiri",
+    "destination": "Krishnagiri",
+    "attraction": "Krishnagiri Fort",
+    "image_1": "/destinations/krishnagiri/1.jpg",
+    "image_2": "/destinations/krishnagiri/2.jpg",
+    "image_3": "/destinations/krishnagiri/3.jpg",
+    "search_query": "Krishnagiri Fort, Krishnagiri, India travel"
+  },
+  {
+    "region": "Madurai",
+    "destination": "Madurai",
+    "attraction": "Meenakshi Amman Temple",
+    "image_1": "/destinations/madurai/1.jpg",
+    "image_2": "/destinations/madurai/2.jpg",
+    "image_3": "/destinations/madurai/3.jpg",
+    "search_query": "Meenakshi Amman Temple, Madurai, India travel"
+  },
+  {
+    "region": "Mayiladuthurai",
+    "destination": "Mayiladuthurai",
+    "attraction": "Mayuranathaswamy Temple",
+    "image_1": "/destinations/mayiladuthurai/1.jpg",
+    "image_2": "/destinations/mayiladuthurai/2.jpg",
+    "image_3": "/destinations/mayiladuthurai/3.jpg",
+    "search_query": "Mayuranathaswamy Temple, Mayiladuthurai, India travel"
+  },
+  {
+    "region": "Nagapattinam",
+    "destination": "Nagapattinam",
+    "attraction": "Velankanni Basilica",
+    "image_1": "/destinations/nagapattinam/1.jpg",
+    "image_2": "/destinations/nagapattinam/2.jpg",
+    "image_3": "/destinations/nagapattinam/3.jpg",
+    "search_query": "Velankanni Basilica, Nagapattinam, India travel"
+  },
+  {
+    "region": "Namakkal",
+    "destination": "Namakkal",
+    "attraction": "Namakkal Anjaneyar Temple",
+    "image_1": "/destinations/namakkal/1.jpg",
+    "image_2": "/destinations/namakkal/2.jpg",
+    "image_3": "/destinations/namakkal/3.jpg",
+    "search_query": "Namakkal Anjaneyar Temple, Namakkal, India travel"
+  },
+  {
+    "region": "Nilgiris",
+    "destination": "The Nilgiris",
+    "attraction": "Ooty",
+    "image_1": "/destinations/the_nilgiris/1.jpg",
+    "image_2": "/destinations/the_nilgiris/2.jpg",
+    "image_3": "/destinations/the_nilgiris/3.jpg",
+    "search_query": "Ooty, The Nilgiris, India travel"
+  },
+  {
+    "region": "Perambalur",
+    "destination": "Perambalur",
+    "attraction": "Ranjankudi Fort",
+    "image_1": "/destinations/perambalur/1.jpg",
+    "image_2": "/destinations/perambalur/2.jpg",
+    "image_3": "/destinations/perambalur/3.jpg",
+    "search_query": "Ranjankudi Fort, Perambalur, India travel"
+  },
+  {
+    "region": "Pudukkottai",
+    "destination": "Pudukkottai",
+    "attraction": "Sittannavasal",
+    "image_1": "/destinations/pudukkottai/1.jpg",
+    "image_2": "/destinations/pudukkottai/2.jpg",
+    "image_3": "/destinations/pudukkottai/3.jpg",
+    "search_query": "Sittannavasal, Pudukkottai, India travel"
+  },
+  {
+    "region": "Ramanathapuram",
+    "destination": "Ramanathapuram",
+    "attraction": "Rameswaram",
+    "image_1": "/destinations/ramanathapuram/1.jpg",
+    "image_2": "/destinations/ramanathapuram/2.jpg",
+    "image_3": "/destinations/ramanathapuram/3.jpg",
+    "search_query": "Rameswaram, Ramanathapuram, India travel"
+  },
+  {
+    "region": "Ranipet",
+    "destination": "Ranipet",
+    "attraction": "Arcot Fort",
+    "image_1": "/destinations/ranipet/1.jpg",
+    "image_2": "/destinations/ranipet/2.jpg",
+    "image_3": "/destinations/ranipet/3.jpg",
+    "search_query": "Arcot Fort, Ranipet, India travel"
+  },
+  {
+    "region": "Salem",
+    "destination": "Salem",
+    "attraction": "Yercaud",
+    "image_1": "/destinations/salem/1.jpg",
+    "image_2": "/destinations/salem/2.jpg",
+    "image_3": "/destinations/salem/3.jpg",
+    "search_query": "Yercaud, Salem, India travel"
+  },
+  {
+    "region": "Sivaganga",
+    "destination": "Sivaganga",
+    "attraction": "Chettinad",
+    "image_1": "/destinations/sivaganga/1.jpg",
+    "image_2": "/destinations/sivaganga/2.jpg",
+    "image_3": "/destinations/sivaganga/3.jpg",
+    "search_query": "Chettinad, Sivaganga, India travel"
+  },
+  {
+    "region": "Tenkasi",
+    "destination": "Tenkasi",
+    "attraction": "Courtallam Falls",
+    "image_1": "/destinations/tenkasi/1.jpg",
+    "image_2": "/destinations/tenkasi/2.jpg",
+    "image_3": "/destinations/tenkasi/3.jpg",
+    "search_query": "Courtallam Falls, Tenkasi, India travel"
+  },
+  {
+    "region": "Thanjavur",
+    "destination": "Thanjavur",
+    "attraction": "Brihadeeswarar Temple",
+    "image_1": "/destinations/thanjavur/1.jpg",
+    "image_2": "/destinations/thanjavur/2.jpg",
+    "image_3": "/destinations/thanjavur/3.jpg",
+    "search_query": "Brihadeeswarar Temple, Thanjavur, India travel"
+  },
+  {
+    "region": "Theni",
+    "destination": "Theni",
+    "attraction": "Meghamalai",
+    "image_1": "/destinations/theni/1.jpg",
+    "image_2": "/destinations/theni/2.jpg",
+    "image_3": "/destinations/theni/3.jpg",
+    "search_query": "Meghamalai, Theni, India travel"
+  },
+  {
+    "region": "Thoothukudi",
+    "destination": "Thoothukudi",
+    "attraction": "Manapad",
+    "image_1": "/destinations/thoothukudi/1.jpg",
+    "image_2": "/destinations/thoothukudi/2.jpg",
+    "image_3": "/destinations/thoothukudi/3.jpg",
+    "search_query": "Manapad, Thoothukudi, India travel"
+  },
+  {
+    "region": "Tiruchirappalli",
+    "destination": "Tiruchirappalli",
+    "attraction": "Rockfort Temple",
+    "image_1": "/destinations/tiruchirappalli/1.jpg",
+    "image_2": "/destinations/tiruchirappalli/2.jpg",
+    "image_3": "/destinations/tiruchirappalli/3.jpg",
+    "search_query": "Rockfort Temple, Tiruchirappalli, India travel"
+  },
+  {
+    "region": "Tirunelveli",
+    "destination": "Tirunelveli",
+    "attraction": "Manimuthar Falls",
+    "image_1": "/destinations/tirunelveli/1.jpg",
+    "image_2": "/destinations/tirunelveli/2.jpg",
+    "image_3": "/destinations/tirunelveli/3.jpg",
+    "search_query": "Manimuthar Falls, Tirunelveli, India travel"
+  },
+  {
+    "region": "Tirupathur",
+    "destination": "Tirupathur",
+    "attraction": "Yelagiri",
+    "image_1": "/destinations/tirupathur/1.jpg",
+    "image_2": "/destinations/tirupathur/2.jpg",
+    "image_3": "/destinations/tirupathur/3.jpg",
+    "search_query": "Yelagiri, Tirupathur, India travel"
+  },
+  {
+    "region": "Tiruppur",
+    "destination": "Tiruppur",
+    "attraction": "Amaravathi Dam",
+    "image_1": "/destinations/tiruppur/1.jpg",
+    "image_2": "/destinations/tiruppur/2.jpg",
+    "image_3": "/destinations/tiruppur/3.jpg",
+    "search_query": "Amaravathi Dam, Tiruppur, India travel"
+  },
+  {
+    "region": "Tiruvallur",
+    "destination": "Tiruvallur",
+    "attraction": "Pulicat Lake",
+    "image_1": "/destinations/tiruvallur/1.jpg",
+    "image_2": "/destinations/tiruvallur/2.jpg",
+    "image_3": "/destinations/tiruvallur/3.jpg",
+    "search_query": "Pulicat Lake, Tiruvallur, India travel"
+  },
+  {
+    "region": "Tiruvarur",
+    "destination": "Tiruvarur",
+    "attraction": "Thyagaraja Temple",
+    "image_1": "/destinations/tiruvarur/1.jpg",
+    "image_2": "/destinations/tiruvarur/2.jpg",
+    "image_3": "/destinations/tiruvarur/3.jpg",
+    "search_query": "Thyagaraja Temple, Tiruvarur, India travel"
+  },
+  {
+    "region": "Tiruvannamalai",
+    "destination": "Tiruvannamalai",
+    "attraction": "Arunachaleswarar Temple",
+    "image_1": "/destinations/tiruvannamalai/1.jpg",
+    "image_2": "/destinations/tiruvannamalai/2.jpg",
+    "image_3": "/destinations/tiruvannamalai/3.jpg",
+    "search_query": "Arunachaleswarar Temple, Tiruvannamalai, India travel"
+  },
+  {
+    "region": "Vellore",
+    "destination": "Vellore",
+    "attraction": "Vellore Fort",
+    "image_1": "/destinations/vellore/1.jpg",
+    "image_2": "/destinations/vellore/2.jpg",
+    "image_3": "/destinations/vellore/3.jpg",
+    "search_query": "Vellore Fort, Vellore, India travel"
+  },
+  {
+    "region": "Viluppuram",
+    "destination": "Viluppuram",
+    "attraction": "Gingee Fort",
+    "image_1": "/destinations/viluppuram/1.jpg",
+    "image_2": "/destinations/viluppuram/2.jpg",
+    "image_3": "/destinations/viluppuram/3.jpg",
+    "search_query": "Gingee Fort, Viluppuram, India travel"
+  },
+  {
+    "region": "Virudhunagar",
+    "destination": "Virudhunagar",
+    "attraction": "Srivilliputhur Andal Temple",
+    "image_1": "/destinations/virudhunagar/1.jpg",
+    "image_2": "/destinations/virudhunagar/2.jpg",
+    "image_3": "/destinations/virudhunagar/3.jpg",
+    "search_query": "Srivilliputhur Andal Temple, Virudhunagar, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Chennai",
+    "attraction": "Kapaleeshwarar Temple",
+    "image_1": "/destinations/chennai/1.jpg",
+    "image_2": "/destinations/chennai/2.jpg",
+    "image_3": "/destinations/chennai/3.jpg",
+    "search_query": "Kapaleeshwarar Temple, Chennai, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Chennai",
+    "attraction": "Fort St George",
+    "image_1": "/destinations/chennai/1.jpg",
+    "image_2": "/destinations/chennai/2.jpg",
+    "image_3": "/destinations/chennai/3.jpg",
+    "search_query": "Fort St George, Chennai, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Mahabalipuram",
+    "attraction": "Pancha Rathas",
+    "image_1": "/destinations/mahabalipuram/1.jpg",
+    "image_2": "/destinations/mahabalipuram/2.jpg",
+    "image_3": "/destinations/mahabalipuram/3.jpg",
+    "search_query": "Pancha Rathas, Mahabalipuram, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Kodaikanal",
+    "attraction": "Kodaikanal Lake",
+    "image_1": "/destinations/kodaikanal/1.jpg",
+    "image_2": "/destinations/kodaikanal/2.jpg",
+    "image_3": "/destinations/kodaikanal/3.jpg",
+    "search_query": "Kodaikanal Lake, Kodaikanal, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Ooty",
+    "attraction": "Ooty Lake",
+    "image_1": "/destinations/ooty/1.jpg",
+    "image_2": "/destinations/ooty/2.jpg",
+    "image_3": "/destinations/ooty/3.jpg",
+    "search_query": "Ooty Lake, Ooty, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Rameswaram",
+    "attraction": "Pamban Bridge",
+    "image_1": "/destinations/rameswaram/1.jpg",
+    "image_2": "/destinations/rameswaram/2.jpg",
+    "image_3": "/destinations/rameswaram/3.jpg",
+    "search_query": "Pamban Bridge, Rameswaram, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Chidambaram",
+    "attraction": "Nataraja Temple",
+    "image_1": "/destinations/chidambaram/1.jpg",
+    "image_2": "/destinations/chidambaram/2.jpg",
+    "image_3": "/destinations/chidambaram/3.jpg",
+    "search_query": "Nataraja Temple, Chidambaram, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Kumbakonam",
+    "attraction": "Airavatesvara Temple",
+    "image_1": "/destinations/kumbakonam/1.jpg",
+    "image_2": "/destinations/kumbakonam/2.jpg",
+    "image_3": "/destinations/kumbakonam/3.jpg",
+    "search_query": "Airavatesvara Temple, Kumbakonam, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Tranquebar",
+    "attraction": "Danish Fort",
+    "image_1": "/destinations/tranquebar/1.jpg",
+    "image_2": "/destinations/tranquebar/2.jpg",
+    "image_3": "/destinations/tranquebar/3.jpg",
+    "search_query": "Danish Fort, Tranquebar, India travel"
+  },
+  {
+    "region": "Tamil Nadu",
+    "destination": "Valparai",
+    "attraction": "Valparai Hills",
+    "image_1": "/destinations/valparai/1.jpg",
+    "image_2": "/destinations/valparai/2.jpg",
+    "image_3": "/destinations/valparai/3.jpg",
+    "search_query": "Valparai Hills, Valparai, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Agra",
+    "attraction": "Taj Mahal",
+    "image_1": "/destinations/agra/1.jpg",
+    "image_2": "/destinations/agra/2.jpg",
+    "image_3": "/destinations/agra/3.jpg",
+    "search_query": "Taj Mahal, Agra, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Jaipur",
+    "attraction": "Amber Fort",
+    "image_1": "/destinations/jaipur/1.jpg",
+    "image_2": "/destinations/jaipur/2.jpg",
+    "image_3": "/destinations/jaipur/3.jpg",
+    "search_query": "Amber Fort, Jaipur, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Jaipur",
+    "attraction": "Hawa Mahal",
+    "image_1": "/destinations/jaipur/1.jpg",
+    "image_2": "/destinations/jaipur/2.jpg",
+    "image_3": "/destinations/jaipur/3.jpg",
+    "search_query": "Hawa Mahal, Jaipur, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Udaipur",
+    "attraction": "Lake Pichola",
+    "image_1": "/destinations/udaipur/1.jpg",
+    "image_2": "/destinations/udaipur/2.jpg",
+    "image_3": "/destinations/udaipur/3.jpg",
+    "search_query": "Lake Pichola, Udaipur, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Delhi",
+    "attraction": "India Gate",
+    "image_1": "/destinations/delhi/1.jpg",
+    "image_2": "/destinations/delhi/2.jpg",
+    "image_3": "/destinations/delhi/3.jpg",
+    "search_query": "India Gate, Delhi, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Delhi",
+    "attraction": "Red Fort",
+    "image_1": "/destinations/delhi/1.jpg",
+    "image_2": "/destinations/delhi/2.jpg",
+    "image_3": "/destinations/delhi/3.jpg",
+    "search_query": "Red Fort, Delhi, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Mumbai",
+    "attraction": "Gateway of India",
+    "image_1": "/destinations/mumbai/1.jpg",
+    "image_2": "/destinations/mumbai/2.jpg",
+    "image_3": "/destinations/mumbai/3.jpg",
+    "search_query": "Gateway of India, Mumbai, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Goa",
+    "attraction": "Baga Beach",
+    "image_1": "/destinations/goa/1.jpg",
+    "image_2": "/destinations/goa/2.jpg",
+    "image_3": "/destinations/goa/3.jpg",
+    "search_query": "Baga Beach, Goa, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Goa",
+    "attraction": "Basilica of Bom Jesus",
+    "image_1": "/destinations/goa/1.jpg",
+    "image_2": "/destinations/goa/2.jpg",
+    "image_3": "/destinations/goa/3.jpg",
+    "search_query": "Basilica of Bom Jesus, Goa, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Kerala",
+    "attraction": "Alleppey Backwaters",
+    "image_1": "/destinations/kerala/1.jpg",
+    "image_2": "/destinations/kerala/2.jpg",
+    "image_3": "/destinations/kerala/3.jpg",
+    "search_query": "Alleppey Backwaters, Kerala, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Munnar",
+    "attraction": "Munnar Tea Gardens",
+    "image_1": "/destinations/munnar/1.jpg",
+    "image_2": "/destinations/munnar/2.jpg",
+    "image_3": "/destinations/munnar/3.jpg",
+    "search_query": "Munnar Tea Gardens, Munnar, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Wayanad",
+    "attraction": "Wayanad Hills",
+    "image_1": "/destinations/wayanad/1.jpg",
+    "image_2": "/destinations/wayanad/2.jpg",
+    "image_3": "/destinations/wayanad/3.jpg",
+    "search_query": "Wayanad Hills, Wayanad, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Karnataka",
+    "attraction": "Mysore Palace",
+    "image_1": "/destinations/karnataka/1.jpg",
+    "image_2": "/destinations/karnataka/2.jpg",
+    "image_3": "/destinations/karnataka/3.jpg",
+    "search_query": "Mysore Palace, Karnataka, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Karnataka",
+    "attraction": "Hampi",
+    "image_1": "/destinations/karnataka/1.jpg",
+    "image_2": "/destinations/karnataka/2.jpg",
+    "image_3": "/destinations/karnataka/3.jpg",
+    "search_query": "Hampi, Karnataka, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Hyderabad",
+    "attraction": "Charminar",
+    "image_1": "/destinations/hyderabad/1.jpg",
+    "image_2": "/destinations/hyderabad/2.jpg",
+    "image_3": "/destinations/hyderabad/3.jpg",
+    "search_query": "Charminar, Hyderabad, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Andhra Pradesh",
+    "attraction": "Tirupati",
+    "image_1": "/destinations/andhra_pradesh/1.jpg",
+    "image_2": "/destinations/andhra_pradesh/2.jpg",
+    "image_3": "/destinations/andhra_pradesh/3.jpg",
+    "search_query": "Tirupati, Andhra Pradesh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Odisha",
+    "attraction": "Konark Sun Temple",
+    "image_1": "/destinations/odisha/1.jpg",
+    "image_2": "/destinations/odisha/2.jpg",
+    "image_3": "/destinations/odisha/3.jpg",
+    "search_query": "Konark Sun Temple, Odisha, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "West Bengal",
+    "attraction": "Victoria Memorial",
+    "image_1": "/destinations/west_bengal/1.jpg",
+    "image_2": "/destinations/west_bengal/2.jpg",
+    "image_3": "/destinations/west_bengal/3.jpg",
+    "search_query": "Victoria Memorial, West Bengal, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Assam",
+    "attraction": "Kaziranga National Park",
+    "image_1": "/destinations/assam/1.jpg",
+    "image_2": "/destinations/assam/2.jpg",
+    "image_3": "/destinations/assam/3.jpg",
+    "search_query": "Kaziranga National Park, Assam, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Meghalaya",
+    "attraction": "Shillong",
+    "image_1": "/destinations/meghalaya/1.jpg",
+    "image_2": "/destinations/meghalaya/2.jpg",
+    "image_3": "/destinations/meghalaya/3.jpg",
+    "search_query": "Shillong, Meghalaya, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Sikkim",
+    "attraction": "Gangtok",
+    "image_1": "/destinations/sikkim/1.jpg",
+    "image_2": "/destinations/sikkim/2.jpg",
+    "image_3": "/destinations/sikkim/3.jpg",
+    "search_query": "Gangtok, Sikkim, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Uttarakhand",
+    "attraction": "Rishikesh",
+    "image_1": "/destinations/uttarakhand/1.jpg",
+    "image_2": "/destinations/uttarakhand/2.jpg",
+    "image_3": "/destinations/uttarakhand/3.jpg",
+    "search_query": "Rishikesh, Uttarakhand, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Uttarakhand",
+    "attraction": "Nainital",
+    "image_1": "/destinations/uttarakhand/1.jpg",
+    "image_2": "/destinations/uttarakhand/2.jpg",
+    "image_3": "/destinations/uttarakhand/3.jpg",
+    "search_query": "Nainital, Uttarakhand, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Himachal Pradesh",
+    "attraction": "Manali",
+    "image_1": "/destinations/himachal_pradesh/1.jpg",
+    "image_2": "/destinations/himachal_pradesh/2.jpg",
+    "image_3": "/destinations/himachal_pradesh/3.jpg",
+    "search_query": "Manali, Himachal Pradesh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Himachal Pradesh",
+    "attraction": "Shimla",
+    "image_1": "/destinations/himachal_pradesh/1.jpg",
+    "image_2": "/destinations/himachal_pradesh/2.jpg",
+    "image_3": "/destinations/himachal_pradesh/3.jpg",
+    "search_query": "Shimla, Himachal Pradesh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Jammu and Kashmir",
+    "attraction": "Gulmarg",
+    "image_1": "/destinations/jammu_and_kashmir/1.jpg",
+    "image_2": "/destinations/jammu_and_kashmir/2.jpg",
+    "image_3": "/destinations/jammu_and_kashmir/3.jpg",
+    "search_query": "Gulmarg, Jammu and Kashmir, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Jammu and Kashmir",
+    "attraction": "Dal Lake",
+    "image_1": "/destinations/jammu_and_kashmir/1.jpg",
+    "image_2": "/destinations/jammu_and_kashmir/2.jpg",
+    "image_3": "/destinations/jammu_and_kashmir/3.jpg",
+    "search_query": "Dal Lake, Jammu and Kashmir, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Ladakh",
+    "attraction": "Pangong Lake",
+    "image_1": "/destinations/ladakh/1.jpg",
+    "image_2": "/destinations/ladakh/2.jpg",
+    "image_3": "/destinations/ladakh/3.jpg",
+    "search_query": "Pangong Lake, Ladakh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Rajasthan",
+    "attraction": "Jaisalmer Fort",
+    "image_1": "/destinations/rajasthan/1.jpg",
+    "image_2": "/destinations/rajasthan/2.jpg",
+    "image_3": "/destinations/rajasthan/3.jpg",
+    "search_query": "Jaisalmer Fort, Rajasthan, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Gujarat",
+    "attraction": "Statue of Unity",
+    "image_1": "/destinations/gujarat/1.jpg",
+    "image_2": "/destinations/gujarat/2.jpg",
+    "image_3": "/destinations/gujarat/3.jpg",
+    "search_query": "Statue of Unity, Gujarat, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Madhya Pradesh",
+    "attraction": "Khajuraho",
+    "image_1": "/destinations/madhya_pradesh/1.jpg",
+    "image_2": "/destinations/madhya_pradesh/2.jpg",
+    "image_3": "/destinations/madhya_pradesh/3.jpg",
+    "search_query": "Khajuraho, Madhya Pradesh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Maharashtra",
+    "attraction": "Ajanta Caves",
+    "image_1": "/destinations/maharashtra/1.jpg",
+    "image_2": "/destinations/maharashtra/2.jpg",
+    "image_3": "/destinations/maharashtra/3.jpg",
+    "search_query": "Ajanta Caves, Maharashtra, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Maharashtra",
+    "attraction": "Ellora Caves",
+    "image_1": "/destinations/maharashtra/1.jpg",
+    "image_2": "/destinations/maharashtra/2.jpg",
+    "image_3": "/destinations/maharashtra/3.jpg",
+    "search_query": "Ellora Caves, Maharashtra, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Bihar",
+    "attraction": "Bodh Gaya",
+    "image_1": "/destinations/bihar/1.jpg",
+    "image_2": "/destinations/bihar/2.jpg",
+    "image_3": "/destinations/bihar/3.jpg",
+    "search_query": "Bodh Gaya, Bihar, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Uttar Pradesh",
+    "attraction": "Varanasi Ghats",
+    "image_1": "/destinations/uttar_pradesh/1.jpg",
+    "image_2": "/destinations/uttar_pradesh/2.jpg",
+    "image_3": "/destinations/uttar_pradesh/3.jpg",
+    "search_query": "Varanasi Ghats, Uttar Pradesh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Uttar Pradesh",
+    "attraction": "Ayodhya",
+    "image_1": "/destinations/uttar_pradesh/1.jpg",
+    "image_2": "/destinations/uttar_pradesh/2.jpg",
+    "image_3": "/destinations/uttar_pradesh/3.jpg",
+    "search_query": "Ayodhya, Uttar Pradesh, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Punjab",
+    "attraction": "Golden Temple",
+    "image_1": "/destinations/punjab/1.jpg",
+    "image_2": "/destinations/punjab/2.jpg",
+    "image_3": "/destinations/punjab/3.jpg",
+    "search_query": "Golden Temple, Punjab, India travel"
+  },
+  {
+    "region": "India",
+    "destination": "Andaman and Nicobar",
+    "attraction": "Radhanagar Beach",
+    "image_1": "/destinations/andaman_and_nicobar/1.jpg",
+    "image_2": "/destinations/andaman_and_nicobar/2.jpg",
+    "image_3": "/destinations/andaman_and_nicobar/3.jpg",
+    "search_query": "Radhanagar Beach, Andaman and Nicobar, India travel"
+  }
+]

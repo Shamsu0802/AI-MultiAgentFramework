@@ -1,0 +1,1057 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #f5f7fb;
+
+    color: #172033;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid #e8ebf2;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.logo-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.logo-icon {
+    width: 44px;
+
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #635bff,
+        #8b5cf6
+    );
+
+    border-radius: 13px;
+
+    font-size: 22px;
+
+    color: white;
+
+    box-shadow:
+        0 7px 20px rgba(99, 91, 255, 0.25);
+}
+
+
+.logo-area h1 {
+    font-size: 21px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.4px;
+}
+
+
+.logo-area span {
+    display: block;
+
+    font-size: 11px;
+
+    color: #7b8497;
+
+    margin-top: 2px;
+}
+
+
+.online-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.status-dot {
+    width: 8px;
+
+    height: 8px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    padding: 75px 20px 90px;
+
+    min-height: calc(100vh - 78px);
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(99, 91, 255, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(14, 165, 233, 0.08),
+            transparent 28%
+        ),
+        #f5f7fb;
+}
+
+
+.hero-content {
+    max-width: 850px;
+
+    margin: 0 auto 38px;
+
+    text-align: center;
+}
+
+
+.hero-badge {
+    display: inline-block;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background: #eeedff;
+
+    color: #635bff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+
+.hero-content h2 {
+    font-size: clamp(38px, 6vw, 62px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2.5px;
+
+    font-weight: 800;
+
+    color: #172033;
+}
+
+
+.hero-content h2 span {
+    background: linear-gradient(
+        135deg,
+        #635bff,
+        #8b5cf6,
+        #0ea5e9
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.hero-content p {
+    max-width: 720px;
+
+    margin: 20px auto 0;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #667085;
+}
+
+
+/* =====================================================
+   PLANNER CARD
+===================================================== */
+
+.planner-card {
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    border: 1px solid #e6e9f0;
+
+    border-radius: 25px;
+
+    padding: 34px;
+
+    box-shadow:
+        0 25px 70px rgba(30, 41, 59, 0.09);
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-section {
+    margin-bottom: 25px;
+}
+
+
+.input-section label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #263248;
+
+    margin-bottom: 10px;
+}
+
+
+.label-icon {
+    font-size: 17px;
+}
+
+
+.input-section input,
+.input-section textarea {
+    width: 100%;
+
+    border: 1px solid #dfe3eb;
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background: #fafbfc;
+
+    color: #172033;
+
+    transition: all 0.25s ease;
+}
+
+
+.input-section input {
+    height: 54px;
+
+    padding: 0 17px;
+
+    font-size: 15px;
+}
+
+
+.input-section textarea {
+    min-height: 160px;
+
+    resize: vertical;
+
+    padding: 16px 17px;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.input-section input::placeholder,
+.input-section textarea::placeholder {
+    color: #9aa3b2;
+}
+
+
+.input-section input:focus,
+.input-section textarea:focus {
+    background: white;
+
+    border-color: #7169ff;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 91, 255, 0.09);
+}
+
+
+/* =====================================================
+   LABEL ROW
+===================================================== */
+
+.label-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.natural-language {
+    font-size: 11px;
+
+    color: #8a93a4;
+
+    background: #f5f6fa;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+}
+
+
+/* =====================================================
+   TEXTAREA FOOTER
+===================================================== */
+
+.textarea-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: #8a93a4;
+}
+
+
+/* =====================================================
+   PLAN BUTTON
+===================================================== */
+
+.plan-button {
+    width: 100%;
+
+    height: 57px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #635bff,
+            #765df5
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 750;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    box-shadow:
+        0 12px 25px rgba(99, 91, 255, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.plan-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 30px rgba(99, 91, 255, 0.32);
+}
+
+
+.plan-button:active {
+    transform: translateY(0);
+}
+
+
+.plan-button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.7;
+
+    transform: none;
+}
+
+
+.button-arrow {
+    font-size: 20px;
+
+    transition: transform 0.2s ease;
+}
+
+
+.plan-button:hover .button-arrow {
+    transform: translateX(4px);
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-section {
+    margin-top: 30px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid #edf0f4;
+
+    text-align: center;
+}
+
+
+.loading-animation {
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 16px;
+}
+
+
+.loader-circle {
+    width: 38px;
+
+    height: 38px;
+
+    border: 4px solid #e8e7ff;
+
+    border-top-color: #635bff;
+
+    border-radius: 50%;
+
+    animation: spin 0.9s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.loading-section h3 {
+    font-size: 18px;
+
+    margin-bottom: 6px;
+}
+
+
+.loading-section > p {
+    color: #7b8497;
+
+    font-size: 13px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =====================================================
+   AGENT PROGRESS
+===================================================== */
+
+.agent-progress {
+    max-width: 500px;
+
+    margin: auto;
+
+    text-align: left;
+}
+
+
+.progress-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    color: #9aa3b2;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+    transition: all 0.3s ease;
+}
+
+
+.progress-item.active {
+    background: #f3f2ff;
+
+    color: #5148d8;
+
+    font-weight: 600;
+}
+
+
+.progress-item.completed {
+    color: #16a34a;
+
+    background: #f0fdf4;
+}
+
+
+.progress-icon {
+    width: 25px;
+
+    text-align: center;
+}
+
+
+.progress-check {
+    margin-left: auto;
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-section {
+    margin-top: 22px;
+
+    padding: 16px;
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+    background: #fff5f5;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 13px;
+
+    color: #991b1b;
+}
+
+
+.error-icon {
+    font-size: 20px;
+}
+
+
+.error-section h3 {
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+
+.error-section p {
+    font-size: 13px;
+
+    color: #b91c1c;
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+.results-section {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 70px 20px;
+}
+
+
+.result-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.result-header .success-badge {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #ecfdf3;
+
+    color: #15803d;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+.result-header h2 {
+    font-size: 34px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 10px;
+}
+
+
+.result-header p {
+    color: #667085;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+
+.summary-card {
+    background: white;
+
+    border: 1px solid #e8ebf2;
+
+    border-radius: 16px;
+
+    padding: 19px;
+
+    box-shadow:
+        0 8px 25px rgba(30, 41, 59, 0.04);
+}
+
+
+.summary-card span {
+    display: block;
+
+    color: #7b8497;
+
+    font-size: 12px;
+
+    margin-bottom: 8px;
+}
+
+
+.summary-card strong {
+    font-size: 18px;
+
+    color: #172033;
+}
+
+
+/* =====================================================
+   RESULT CARD
+===================================================== */
+
+.result-card {
+    background: white;
+
+    border: 1px solid #e8ebf2;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(30, 41, 59, 0.04);
+}
+
+
+.result-card h3 {
+    font-size: 18px;
+
+    margin-bottom: 14px;
+}
+
+
+.result-card > p {
+    color: #667085;
+
+    line-height: 1.65;
+
+    font-size: 14px;
+}
+
+
+.highlight {
+    margin-top: 15px;
+
+    background: #f5f3ff;
+
+    border-radius: 11px;
+
+    padding: 12px 15px;
+
+    color: #5148d8;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   ITINERARY
+===================================================== */
+
+.day-card {
+    border: 1px solid #e9ebf1;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    margin-bottom: 15px;
+}
+
+
+.day-header {
+    background: #f7f7ff;
+
+    padding: 15px 17px;
+
+    border-bottom: 1px solid #e9ebf1;
+}
+
+
+.day-header h4 {
+    font-size: 15px;
+
+    color: #4038a8;
+}
+
+
+.activities {
+    padding: 8px 16px;
+}
+
+
+.activity {
+    display: flex;
+
+    gap: 17px;
+
+    padding: 15px 5px;
+
+    border-bottom: 1px solid #f0f1f4;
+}
+
+
+.activity:last-child {
+    border-bottom: none;
+}
+
+
+.activity-time {
+    min-width: 85px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #635bff;
+
+    padding-top: 2px;
+}
+
+
+.activity-details strong {
+    font-size: 14px;
+
+    color: #263248;
+}
+
+
+.activity-details p {
+    margin-top: 4px;
+
+    color: #7b8497;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
+
+.final-message {
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #eeedff,
+        #f5f3ff
+    );
+
+    color: #4038a8;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    padding: 30px 7%;
+
+    background: #151a2b;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.footer-logo {
+    font-size: 27px;
+}
+
+
+.footer strong {
+    font-size: 15px;
+}
+
+
+.footer p {
+    color: #9da5b8;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+.footer-agents {
+    margin-left: auto;
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+}
+
+
+.footer-agents span {
+    padding: 6px 10px;
+
+    background: #242a3d;
+
+    border-radius: 20px;
+
+    color: #b7bfd0;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   UTILITY
+===================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .online-status {
+        display: none;
+    }
+
+    .hero {
+        padding: 45px 15px 60px;
+    }
+
+    .hero-content h2 {
+        letter-spacing: -1.5px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .planner-card {
+        padding: 22px;
+
+        border-radius: 19px;
+    }
+
+    .natural-language {
+        display: none;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .results-section {
+        padding: 45px 15px;
+    }
+
+    .result-header h2 {
+        font-size: 27px;
+    }
+
+    .footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .footer-agents {
+        margin-left: 0;
+
+        justify-content: flex-start;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+}

@@ -1,0 +1,2999 @@
+<!DOCTYPE html>
+<html lang="enindex.html">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Voyage Control · AI Trip Planner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+:root{
+  --bg:#10131c;
+  --panel:#191d2a;
+  --panel-raised:#1f2434;
+  --line:#2b3145;
+  --text:#eee9dd;
+  --muted:#8891a6;
+  --brass:#c89b3c;
+  --brass-dim:#7d6531;
+  --ok:#6fa98a;
+  --err:#c96a5a;
+  --radius:14px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:
+    radial-gradient(
+      ellipse 900px 500px at 15% -10%,
+      #1b2136 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 700px 500px at 100% 0%,
+      #1a1f30 0%,
+      transparent 55%
+    ),
+    var(--bg);
+
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:56px 24px 100px;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--brass);
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-bottom:18px;
+}
+
+.eyebrow .dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--muted);
+  box-shadow:0 0 0 3px rgba(136,145,166,.12);
+}
+
+.eyebrow .dot.up{
+  background:var(--ok);
+  box-shadow:0 0 0 3px rgba(111,169,138,.18);
+}
+
+.eyebrow .dot.down{
+  background:var(--err);
+  box-shadow:0 0 0 3px rgba(201,106,90,.18);
+}
+
+h1{
+  font-family:'Fraunces',serif;
+  font-weight:500;
+  font-size:clamp(34px,5vw,52px);
+  line-height:1.08;
+  letter-spacing:-.01em;
+  margin:0 0 14px;
+}
+
+h1 em{
+  font-style:italic;
+  color:var(--brass);
+}
+
+.sub{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.6;
+  max-width:560px;
+  margin:0 0 40px;
+}
+
+/* ============================================================
+   INPUT
+============================================================ */
+
+.console{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:44px;
+}
+
+.console label{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+textarea{
+  width:100%;
+  background:var(--panel-raised);
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  padding:14px 16px;
+  resize:vertical;
+  min-height:78px;
+  line-height:1.5;
+  outline:none;
+  transition:border-color .15s ease;
+}
+
+textarea:focus{
+  border-color:var(--brass-dim);
+}
+
+textarea::placeholder{
+  color:#57607a;
+}
+
+.console-foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:16px;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.api-config{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.api-config input{
+  background:transparent;
+  border:none;
+  border-bottom:1px dashed var(--line);
+  color:var(--muted);
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  padding:3px 2px;
+  width:230px;
+  outline:none;
+}
+
+.api-config input:focus{
+  color:var(--text);
+  border-color:var(--brass-dim);
+}
+
+button.launch{
+  background:var(--brass);
+  color:#16130a;
+  border:none;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  padding:12px 22px;
+  border-radius:9px;
+  cursor:pointer;
+  transition:transform .12s ease, background .15s ease;
+}
+
+button.launch:hover{
+  background:#d9ac4a;
+}
+
+button.launch:active{
+  transform:scale(.98);
+}
+
+button.launch:disabled{
+  background:var(--brass-dim);
+  color:#24201499;
+  cursor:not-allowed;
+}
+
+/* ============================================================
+   PIPELINE
+============================================================ */
+
+.route-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 22px;
+}
+
+.route{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(0,1fr));
+  margin-bottom:48px;
+}
+
+.route-line{
+  position:absolute;
+  top:17px;
+  left:0;
+  right:0;
+  height:1px;
+  background:var(--line);
+  z-index:0;
+}
+
+.route-line-fill{
+  position:absolute;
+  top:17px;
+  left:0;
+  height:1px;
+  background:var(--brass);
+  z-index:1;
+  width:0%;
+  transition:width .5s ease;
+}
+
+.stop{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  text-align:center;
+  padding:0 4px;
+}
+
+.stop .node{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+
+  background:var(--panel-raised);
+  border:1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+
+  margin-bottom:10px;
+
+  transition:all .25s ease;
+}
+
+.stop.pending .node{
+  animation:pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{
+    opacity:1;
+  }
+
+  50%{
+    opacity:.35;
+  }
+}
+
+.stop.active .node{
+  border-color:var(--brass);
+  color:var(--brass);
+  box-shadow:0 0 0 4px rgba(200,155,60,.14);
+}
+
+.stop.done .node{
+  background:var(--brass);
+  border-color:var(--brass);
+  color:#16130a;
+}
+
+.stop.done .node::after{
+  content:'✓';
+}
+
+.stop.done .node span{
+  display:none;
+}
+
+.stop.failed .node{
+  background:var(--err);
+  border-color:var(--err);
+  color:#1a0d0a;
+}
+
+.stop.failed .node::after{
+  content:'✕';
+}
+
+.stop.failed .node span{
+  display:none;
+}
+
+.stop .label{
+  font-size:11.5px;
+  color:var(--muted);
+  max-width:84px;
+  line-height:1.3;
+}
+
+.stop .time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--brass-dim);
+  margin-top:3px;
+}
+
+.stop.active .label,
+.stop.done .label,
+.stop.failed .label{
+  color:var(--text);
+}
+
+.stop.clickable{
+  cursor:pointer;
+}
+
+.stop.clickable:hover .label{
+  color:var(--brass);
+}
+
+/* ============================================================
+   RESULTS
+============================================================ */
+
+.results{
+  display:none;
+}
+
+.results.show{
+  display:block;
+}
+
+.status-banner{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:12px 16px;
+
+  border-radius:10px;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;
+
+  margin-bottom:24px;
+
+  border:1px solid var(--line);
+}
+
+.status-banner.ok{
+  color:var(--ok);
+  border-color:rgba(111,169,138,.3);
+  background:rgba(111,169,138,.06);
+}
+
+.status-banner.err{
+  color:var(--err);
+  border-color:rgba(201,106,90,.3);
+  background:rgba(201,106,90,.06);
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+
+  padding:24px 26px;
+  margin-bottom:16px;
+
+  width:100%;
+  min-width:0;
+  height:auto;
+
+  overflow:hidden;
+}
+
+.card h2{
+  font-family:'Fraunces',serif;
+  font-weight:500;
+  font-size:19px;
+
+  margin:0 0 14px;
+
+  color:var(--brass);
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.card h2::before{
+  content:'';
+
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+
+  background:var(--brass);
+
+  display:inline-block;
+}
+
+.card .body{
+  font-size:14.5px;
+  line-height:1.7;
+  color:#d9d3c4;
+
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  max-width:100%;
+}
+
+.kv{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.kv-row{
+  display:flex;
+  gap:10px;
+
+  font-size:14px;
+
+  width:100%;
+  min-width:0;
+
+  align-items:flex-start;
+}
+
+.kv-row .k{
+  color:var(--muted);
+  min-width:140px;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+
+  padding-top:2px;
+}
+
+.kv-row .v{
+  color:var(--text);
+  line-height:1.5;
+
+  min-width:0;
+  flex:1;
+  max-width:100%;
+
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  white-space:normal;
+}
+
+ul.plain{
+  margin:0;
+  padding-left:18px;
+}
+
+ul.plain li{
+  margin-bottom:6px;
+  line-height:1.55;
+}
+
+details.raw{
+  margin-top:8px;
+}
+
+details.raw summary{
+  cursor:pointer;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+details.raw pre{
+  background:#0c0e15;
+  border:1px solid var(--line);
+  border-radius:8px;
+
+  padding:14px;
+
+  font-size:12px;
+  color:#a9b1c4;
+
+  overflow-x:auto;
+
+  margin-top:10px;
+}
+
+/* ============================================================
+   STEP DETAILS
+============================================================ */
+
+.step-detail{
+  display:none;
+
+  background:var(--panel-raised);
+  border:1px solid var(--line);
+  border-radius:10px;
+
+  padding:16px 18px;
+
+  margin-bottom:40px;
+  margin-top:-28px;
+}
+
+.step-detail.show{
+  display:block;
+}
+
+.step-detail .sd-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+
+  gap:12px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+
+.step-detail .sd-title{
+  font-family:'Fraunces',serif;
+  font-size:16px;
+  color:var(--text);
+}
+
+.step-detail .sd-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.step-detail .sd-task{
+  font-size:13.5px;
+  color:var(--muted);
+  margin-bottom:12px;
+  font-style:italic;
+}
+
+/* ============================================================
+   SUBTASKS
+============================================================ */
+
+.subtask{
+  display:flex;
+  gap:12px;
+
+  padding:10px 0;
+
+  border-bottom:1px solid var(--line);
+
+  font-size:13.5px;
+}
+
+.subtask:last-child{
+  border-bottom:none;
+}
+
+.subtask .step-no{
+  font-family:'JetBrains Mono',monospace;
+  color:var(--brass);
+  min-width:22px;
+}
+
+.subtask .step-agent{
+  color:var(--text);
+  font-weight:600;
+}
+
+.subtask .step-task{
+  color:var(--muted);
+}
+
+.subtask .step-deps{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:#57607a;
+}
+
+/* ============================================================
+   DESTINATION GALLERY
+============================================================ */
+
+.destination-gallery{
+  margin-bottom:16px;
+}
+
+.gallery-title{
+  font-family:'Fraunces',serif;
+  font-size:24px;
+  font-weight:500;
+
+  color:var(--text);
+
+  margin-bottom:6px;
+}
+
+.gallery-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:16px;
+}
+
+.destination-images{
+  position:relative;
+
+  width:100%;
+  height:420px;
+
+  overflow:hidden;
+
+  border-radius:12px;
+
+  background:var(--panel-raised);
+}
+
+.destination-slide{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+  opacity:0;
+
+  transition:opacity .7s ease, transform 5s ease;
+}
+
+.destination-slide.active{
+  opacity:1;
+  transform:scale(1.02);
+}
+
+.destination-slide.loading{
+  opacity:0;
+}
+
+/* Dark gradient over image */
+
+.destination-images::after{
+  content:'';
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:110px;
+
+  background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.72)
+  );
+
+  pointer-events:none;
+
+  z-index:2;
+}
+
+/* ============================================================
+   PEXELS ATTRIBUTION
+============================================================ */
+
+.pexels-credit{
+  position:absolute;
+
+  left:18px;
+  bottom:16px;
+
+  z-index:6;
+
+  color:white;
+
+  font-size:11px;
+
+  background:rgba(0,0,0,.45);
+
+  backdrop-filter:blur(5px);
+
+  padding:7px 10px;
+
+  border-radius:7px;
+
+  max-width:70%;
+}
+
+.pexels-credit a{
+  color:#fff;
+
+  text-decoration:none;
+
+  border-bottom:1px solid rgba(255,255,255,.4);
+}
+
+.pexels-credit a:hover{
+  color:var(--brass);
+}
+
+/* ============================================================
+   SLIDESHOW CONTROLS
+============================================================ */
+
+.slideshow-btn{
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  z-index:7;
+
+  width:44px;
+  height:44px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.25);
+
+  background:rgba(0,0,0,.55);
+
+  color:white;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.slideshow-btn:hover{
+  background:rgba(0,0,0,.82);
+
+  transform:
+    translateY(-50%)
+    scale(1.05);
+}
+
+.slideshow-btn.prev{
+  left:15px;
+}
+
+.slideshow-btn.next{
+  right:15px;
+}
+
+.slideshow-dots{
+  position:absolute;
+
+  bottom:17px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  display:flex;
+
+  gap:7px;
+
+  z-index:7;
+}
+
+.slideshow-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  border:none;
+
+  padding:0;
+
+  cursor:pointer;
+
+  background:rgba(255,255,255,.45);
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+}
+
+.slideshow-dot.active{
+  background:var(--brass);
+
+  transform:scale(1.3);
+}
+
+/* ============================================================
+   IMAGE COUNTER
+============================================================ */
+
+.image-counter{
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  z-index:7;
+
+  background:rgba(0,0,0,.5);
+
+  backdrop-filter:blur(5px);
+
+  color:white;
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:11px;
+
+  padding:7px 10px;
+
+  border-radius:7px;
+}
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.gallery-loading{
+  height:420px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  flex-direction:column;
+
+  gap:12px;
+
+  color:var(--muted);
+}
+
+.gallery-spinner{
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  border:3px solid var(--line);
+
+  border-top-color:var(--brass);
+
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* ============================================================
+   EMPTY
+============================================================ */
+
+.empty{
+  color:var(--muted);
+
+  font-size:14px;
+
+  padding:40px 0;
+
+  text-align:center;
+
+  border:1px dashed var(--line);
+
+  border-radius:var(--radius);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+footer{
+  margin-top:60px;
+
+  color:#4c5468;
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:11px;
+
+  letter-spacing:.05em;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media(max-width:640px){
+
+  .wrap{
+    padding:35px 16px 70px;
+  }
+
+  .stop .label{
+    display:none;
+  }
+
+  .console-foot{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  button.launch{
+    width:100%;
+  }
+
+  .destination-images{
+    height:270px;
+  }
+
+  .gallery-loading{
+    height:270px;
+  }
+
+  .slideshow-btn{
+    width:36px;
+    height:36px;
+    font-size:18px;
+  }
+
+  .slideshow-btn.prev{
+    left:10px;
+  }
+
+  .slideshow-btn.next{
+    right:10px;
+  }
+
+  .pexels-credit{
+    font-size:10px;
+    max-width:75%;
+  }
+
+  .kv-row{
+    flex-direction:column;
+    gap:3px;
+  }
+
+  .kv-row .k{
+    min-width:auto;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+    transition:none !important;
+    animation:none !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <!-- ======================================================
+       HEADER
+  ======================================================= -->
+
+  <div class="eyebrow">
+    <span class="dot" id="healthDot"></span>
+    <span id="healthText">checking backend…</span>
+  </div>
+
+  <h1>
+    Plan the trip.<br>
+    Watch the <em>agents</em> work it out.
+  </h1>
+
+  <p class="sub">
+    Describe where you want to go, roughly what you can spend,
+    and how long you've got. Eight agents pass it down the line —
+    research, transport, stay, budget, itinerary, review —
+    and hand back a plan.
+  </p>
+
+  <!-- ======================================================
+       INPUT
+  ======================================================= -->
+
+  <div class="console">
+
+    <label for="reqInput">
+      Trip request
+    </label>
+
+    <textarea
+      id="reqInput"
+      placeholder="e.g. 5 days in Lisbon in October, mid-range budget, traveling with one friend, we like food markets and coastal day trips"
+    ></textarea>
+
+    <div class="console-foot">
+
+      <div class="api-config">
+
+        API base:
+
+        <input
+          id="apiBase"
+          type="text"
+          value="http://127.0.0.1:8000"
+          spellcheck="false"
+        >
+
+      </div>
+
+      <button
+        class="launch"
+        id="launchBtn"
+      >
+        Send to the agents →
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ======================================================
+       PIPELINE
+  ======================================================= -->
+
+  <p
+    class="route-title"
+    id="routeTitle"
+  >
+    Pipeline
+  </p>
+
+  <div
+    class="route"
+    id="route"
+  >
+
+    <div class="route-line"></div>
+
+    <div
+      class="route-line-fill"
+      id="routeFill"
+    ></div>
+
+  </div>
+
+  <div
+    class="step-detail"
+    id="stepDetail"
+  ></div>
+
+  <!-- ======================================================
+       RESULTS
+  ======================================================= -->
+
+  <div
+    class="results"
+    id="results"
+  ></div>
+
+  <!-- ======================================================
+       FOOTER
+  ======================================================= -->
+
+  <footer>
+
+    voyage control · talks to
+
+    <span id="footApi">
+      http://127.0.0.1:8000
+    </span>
+
+  </footer>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   DEFAULT AGENTS
+============================================================ */
+
+const DEFAULT_AGENTS = [
+
+  'Planner Agent',
+  'Research Agent',
+  'Transportation Agent',
+  'Accommodation Agent',
+  'Budget Agent',
+  'Itinerary Agent',
+  'Review Agent',
+  'Response Agent'
+
+];
+
+
+/* ============================================================
+   DOM ELEMENTS
+============================================================ */
+
+const routeEl =
+  document.getElementById('route');
+
+const routeFill =
+  document.getElementById('routeFill');
+
+const routeTitle =
+  document.getElementById('routeTitle');
+
+const stepDetailEl =
+  document.getElementById('stepDetail');
+
+const resultsEl =
+  document.getElementById('results');
+
+const launchBtn =
+  document.getElementById('launchBtn');
+
+const reqInput =
+  document.getElementById('reqInput');
+
+const apiBaseInput =
+  document.getElementById('apiBase');
+
+const footApi =
+  document.getElementById('footApi');
+
+const healthDot =
+  document.getElementById('healthDot');
+
+const healthText =
+  document.getElementById('healthText');
+
+
+/* ============================================================
+   API BASE
+============================================================ */
+
+function apiBase(){
+
+  return apiBaseInput.value
+    .trim()
+    .replace(/\/+$/, '');
+
+}
+
+
+/* ============================================================
+   SHORT AGENT LABEL
+============================================================ */
+
+function shortLabel(agentName){
+
+  return String(agentName || '?')
+    .replace(/\s*Agent\s*$/i, '');
+
+}
+
+
+/* ============================================================
+   HTML ESCAPE
+============================================================ */
+
+function escapeHtml(str){
+
+  return String(str).replace(
+    /[&<>"']/g,
+    c => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    }[c])
+  );
+
+}
+
+
+/* ============================================================
+   PENDING PIPELINE
+============================================================ */
+
+function buildPendingRoute(){
+
+  routeTitle.textContent = 'Pipeline';
+
+  stepDetailEl.classList.remove('show');
+
+  routeEl
+    .querySelectorAll('.stop')
+    .forEach(n => n.remove());
+
+  routeFill.style.width = '0%';
+
+  DEFAULT_AGENTS.forEach(name => {
+
+    const stop =
+      document.createElement('div');
+
+    stop.className = 'stop pending';
+
+    stop.innerHTML = `
+
+      <div class="node">
+        <span>·</span>
+      </div>
+
+      <div class="label">
+        ${escapeHtml(shortLabel(name))}
+      </div>
+
+    `;
+
+    routeEl.appendChild(stop);
+
+  });
+
+}
+
+buildPendingRoute();
+
+
+/* ============================================================
+   REAL PIPELINE
+============================================================ */
+
+function buildRouteFromLog(executionLog){
+
+  routeEl
+    .querySelectorAll('.stop')
+    .forEach(n => n.remove());
+
+  stepDetailEl.classList.remove('show');
+
+  if(
+    !Array.isArray(executionLog) ||
+    executionLog.length === 0
+  ){
+
+    routeTitle.textContent =
+      'Pipeline (no execution log returned)';
+
+    routeFill.style.width = '0%';
+
+    return;
+
+  }
+
+  routeTitle.textContent =
+    `Pipeline · ${executionLog.length} step${
+      executionLog.length === 1 ? '' : 's'
+    } run`;
+
+  executionLog.forEach((record, i) => {
+
+    const status =
+      record.status || 'completed';
+
+    const cls =
+      status === 'failed'
+        ? 'failed'
+        : 'done';
+
+    const stop =
+      document.createElement('div');
+
+    stop.className =
+      `stop ${cls} clickable`;
+
+    const timeLabel =
+      typeof record.execution_time === 'number'
+        ? `${record.execution_time}s`
+        : '';
+
+    stop.innerHTML = `
+
+      <div class="node">
+        <span>·</span>
+      </div>
+
+      <div class="label">
+        ${escapeHtml(shortLabel(record.agent))}
+      </div>
+
+      ${
+        timeLabel
+          ? `<div class="time">${timeLabel}</div>`
+          : ''
+      }
+
+    `;
+
+    stop.addEventListener(
+      'click',
+      () => showStepDetail(record, stop)
+    );
+
+    routeEl.appendChild(stop);
+
+  });
+
+  routeFill.style.width = '100%';
+
+}
+
+
+/* ============================================================
+   STEP DETAIL
+============================================================ */
+
+function showStepDetail(record, stopEl){
+
+  const alreadyOpenFor =
+    stepDetailEl.dataset.openFor;
+
+  const thisId =
+    `${record.agent}-${record.task}`;
+
+  if(
+    stepDetailEl.classList.contains('show') &&
+    alreadyOpenFor === thisId
+  ){
+
+    stepDetailEl.classList.remove('show');
+
+    return;
+
+  }
+
+  stepDetailEl.dataset.openFor =
+    thisId;
+
+  const status =
+    record.status || 'completed';
+
+  const outputHtml =
+    renderValue(record.output);
+
+  stepDetailEl.innerHTML = `
+
+    <div class="sd-head">
+
+      <div class="sd-title">
+        ${escapeHtml(record.agent || 'Agent')}
+      </div>
+
+      <div class="sd-meta">
+
+        ${status.toUpperCase()}
+
+        ${
+          typeof record.execution_time === 'number'
+            ? ` · ${record.execution_time}s`
+            : ''
+        }
+
+      </div>
+
+    </div>
+
+    ${
+      record.task
+        ? `<div class="sd-task">
+             ${escapeHtml(record.task)}
+           </div>`
+        : ''
+    }
+
+    <div>
+      ${outputHtml}
+    </div>
+
+  `;
+
+  stepDetailEl.classList.add('show');
+
+  stepDetailEl.scrollIntoView({
+    behavior:'smooth',
+    block:'nearest'
+  });
+
+}
+
+
+/* ============================================================
+   HEALTH CHECK
+============================================================ */
+
+async function checkHealth(){
+
+  try{
+
+    const res =
+      await fetch(`${apiBase()}/health`);
+
+    if(!res.ok){
+
+      throw new Error('bad status');
+
+    }
+
+    healthDot.className =
+      'dot up';
+
+    healthText.textContent =
+      `backend online · ${apiBase()}`;
+
+  }catch(e){
+
+    healthDot.className =
+      'dot down';
+
+    healthText.textContent =
+      `can't reach backend at ${apiBase()}`;
+
+  }
+
+  footApi.textContent =
+    apiBase();
+
+}
+
+checkHealth();
+
+apiBaseInput.addEventListener(
+  'change',
+  checkHealth
+);
+
+
+/* ============================================================
+   RENDERING HELPERS
+============================================================ */
+
+function titleCase(key){
+
+  return key
+    .replace(/[_-]+/g,' ')
+    .replace(/\b\w/g,c => c.toUpperCase());
+
+}
+
+
+function renderValue(v){
+
+  if(
+    v === null ||
+    v === undefined
+  ){
+
+    return `
+      <span class="body">—</span>
+    `;
+
+  }
+
+
+  if(Array.isArray(v)){
+
+    if(
+      v.every(
+        x =>
+          typeof x === 'string' ||
+          typeof x === 'number'
+      )
+    ){
+
+      return `
+
+        <ul class="plain">
+
+          ${
+            v.map(
+              x =>
+                `<li>${escapeHtml(String(x))}</li>`
+            ).join('')
+          }
+
+        </ul>
+
+      `;
+
+    }
+
+    return `
+
+      <ul class="plain">
+
+        ${
+          v.map(
+            x =>
+              `<li>${
+                typeof x === 'object'
+                  ? renderObjectInline(x)
+                  : escapeHtml(String(x))
+              }</li>`
+          ).join('')
+        }
+
+      </ul>
+
+    `;
+
+  }
+
+
+  if(typeof v === 'object'){
+
+    return renderKv(v);
+
+  }
+
+
+  return `
+
+    <div class="body">
+      ${escapeHtml(String(v))}
+    </div>
+
+  `;
+
+}
+
+
+function renderObjectInline(obj){
+
+  return Object.entries(obj)
+    .map(
+      ([k,val]) => `
+
+        <strong>
+          ${escapeHtml(titleCase(k))}:
+        </strong>
+
+        ${
+          escapeHtml(
+            typeof val === 'object'
+              ? JSON.stringify(val)
+              : String(val)
+          )
+        }
+
+      `
+    )
+    .join(' · ');
+
+}
+
+
+function renderKv(obj){
+
+  const rows =
+    Object.entries(obj)
+      .map(([k,v]) => {
+
+        const val =
+          v &&
+          typeof v === 'object'
+
+            ? (
+                Array.isArray(v)
+                  ? renderValue(v)
+                  : `<div>${renderKv(v)}</div>`
+              )
+
+            : escapeHtml(String(v));
+
+        return `
+
+          <div class="kv-row">
+
+            <div class="k">
+              ${escapeHtml(titleCase(k))}
+            </div>
+
+            <div class="v">
+              ${val}
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+  return `
+
+    <div class="kv">
+      ${rows.join('')}
+    </div>
+
+  `;
+
+}
+
+
+/* ============================================================
+   HANDLED KEYS
+============================================================ */
+
+const HANDLED_KEYS =
+  new Set([
+
+    'success',
+    'final_output',
+    'planner_output',
+    'agent_outputs',
+    'execution_log',
+    'user_request',
+    'destination_image_data'
+
+  ]);
+
+
+/* ============================================================
+   PLANNER SUBTASKS
+============================================================ */
+
+function renderSubtasks(subtasks){
+
+  if(
+    !Array.isArray(subtasks) ||
+    subtasks.length === 0
+  ){
+
+    return `
+      <div class="body">
+        No subtasks were generated.
+      </div>
+    `;
+
+  }
+
+  return subtasks
+    .map(
+      st => `
+
+        <div class="subtask">
+
+          <div class="step-no">
+            ${st.step ?? '·'}
+          </div>
+
+          <div>
+
+            <div>
+              <span class="step-agent">
+                ${escapeHtml(
+                  st.agent || 'Unknown agent'
+                )}
+              </span>
+            </div>
+
+            <div class="step-task">
+              ${escapeHtml(st.task || '')}
+            </div>
+
+            ${
+              st.depends_on &&
+              st.depends_on.length
+
+                ? `
+                  <div class="step-deps">
+                    depends on:
+                    ${escapeHtml(
+                      JSON.stringify(st.depends_on)
+                    )}
+                  </div>
+                `
+
+                : ''
+            }
+
+          </div>
+
+        </div>
+
+      `
+    )
+    .join('');
+
+}
+
+
+/* ============================================================
+   ADD CARD
+============================================================ */
+
+function addCard(title, innerHtml){
+
+  const card =
+    document.createElement('div');
+
+  card.className =
+    'card';
+
+  card.innerHTML = `
+
+    <h2>
+      ${escapeHtml(title)}
+    </h2>
+
+    <div>
+      ${innerHtml}
+    </div>
+
+  `;
+
+  resultsEl.appendChild(card);
+
+}
+
+
+/* ============================================================
+   PEXELS IMAGE URL
+============================================================ */
+
+/*
+   Supports both:
+
+   OLD:
+   "/destinations/ooty/1.jpg"
+
+   NEW PEXELS:
+   {
+      image_url: "...",
+      image_url_large: "...",
+      image_url_medium: "...",
+      image_url_landscape: "..."
+   }
+
+   We primarily use the Pexels landscape URL.
+*/
+
+function getPexelsImageUrl(image){
+
+  if(typeof image === 'string'){
+
+    /*
+      Backward compatibility.
+
+      If backend accidentally returns a full URL,
+      use it directly.
+
+      Otherwise treat it as a backend path.
+    */
+
+    if(
+      image.startsWith('http://') ||
+      image.startsWith('https://')
+    ){
+
+      return image;
+
+    }
+
+    return `${apiBase()}${image}`;
+
+  }
+
+
+  if(
+    image &&
+    typeof image === 'object'
+  ){
+
+    return (
+      image.image_url_landscape ||
+      image.image_url_large ||
+      image.image_url_medium ||
+      image.image_url ||
+      image.src?.landscape ||
+      image.src?.large ||
+      image.src?.medium ||
+      image.src?.original ||
+      ''
+    );
+
+  }
+
+  return '';
+
+}
+
+
+/* ============================================================
+   PEXELS PHOTOGRAPHER
+============================================================ */
+
+function getPhotographer(image){
+
+  if(
+    image &&
+    typeof image === 'object'
+  ){
+
+    return (
+      image.photographer ||
+      'Pexels photographer'
+    );
+
+  }
+
+  return 'Pexels photographer';
+
+}
+
+
+/* ============================================================
+   PEXELS PHOTO URL
+============================================================ */
+
+function getPexelsPageUrl(image){
+
+  if(
+    image &&
+    typeof image === 'object'
+  ){
+
+    return (
+      image.pexels_url ||
+      image.url ||
+      image.photographer_url ||
+      'https://www.pexels.com/'
+    );
+
+  }
+
+  return 'https://www.pexels.com/';
+
+}
+
+
+/* ============================================================
+   DESTINATION GALLERY
+============================================================ */
+
+function renderDestinationGallery(imageData){
+
+  if(
+    !imageData ||
+    typeof imageData !== 'object'
+  ){
+
+    return;
+
+  }
+
+
+  const destination =
+    imageData.destination ||
+    imageData.matched_destination ||
+    'Your Destination';
+
+
+  /*
+     PEXELS RETURNS:
+
+     images: [
+       {
+         image_url: "...",
+         photographer: "...",
+         pexels_url: "..."
+       }
+     ]
+  */
+
+  const images =
+    Array.isArray(imageData.images)
+
+      ? imageData.images
+          .map(image => {
+
+            const url =
+              getPexelsImageUrl(image);
+
+            if(!url){
+
+              return null;
+
+            }
+
+            return {
+              raw:image,
+              url:url
+            };
+
+          })
+          .filter(Boolean)
+
+      : [];
+
+
+  const gallery =
+    document.createElement('div');
+
+  gallery.className =
+    'card destination-gallery';
+
+
+  /* ========================================================
+     NO IMAGES
+  ======================================================== */
+
+  if(images.length === 0){
+
+    gallery.innerHTML = `
+
+      <div class="gallery-title">
+        ${escapeHtml(destination)}
+      </div>
+
+      <div class="gallery-subtitle">
+        Destination Images
+      </div>
+
+      <div
+        class="empty"
+        style="padding:28px 20px;"
+      >
+
+        📷 Images are not available for
+        ${escapeHtml(destination)}.
+
+        <br>
+
+        <span style="font-size:12px;">
+          You can still continue with the travel plan.
+        </span>
+
+      </div>
+
+    `;
+
+    resultsEl.appendChild(gallery);
+
+    return;
+
+  }
+
+
+  /* ========================================================
+     MAXIMUM 6 IMAGES
+  ======================================================== */
+
+  const selectedImages =
+    images.slice(0,6);
+
+
+  /* ========================================================
+     IMAGE SLIDES
+  ======================================================== */
+
+  const slides =
+    selectedImages
+      .map((image,index) => {
+
+        const raw =
+          image.raw;
+
+        const altText =
+          raw?.alt ||
+          `${destination} travel destination`;
+
+        return `
+
+          <img
+
+            class="destination-slide ${
+              index === 0
+                ? 'active'
+                : ''
+            }"
+
+            src="${escapeHtml(image.url)}"
+
+            alt="${escapeHtml(altText)}"
+
+            loading="${
+              index === 0
+                ? 'eager'
+                : 'lazy'
+            }"
+
+            data-index="${index}"
+
+            data-photo-url="${escapeHtml(
+              getPexelsPageUrl(raw)
+            )}"
+
+            data-photographer="${escapeHtml(
+              getPhotographer(raw)
+            )}"
+
+          >
+
+        `;
+
+      })
+      .join('');
+
+
+  /* ========================================================
+     DOTS
+  ======================================================== */
+
+  const dots =
+    selectedImages
+      .map(
+        (_,index) => `
+
+          <button
+
+            class="slideshow-dot ${
+              index === 0
+                ? 'active'
+                : ''
+            }"
+
+            data-index="${index}"
+
+            aria-label="Show image ${index + 1}"
+
+          ></button>
+
+        `
+      )
+      .join('');
+
+
+  /* ========================================================
+     GALLERY HTML
+  ======================================================== */
+
+  gallery.innerHTML = `
+
+    <div class="gallery-title">
+
+      ${escapeHtml(destination)}
+
+    </div>
+
+    <div class="gallery-subtitle">
+
+      Explore your destination
+
+      ·
+
+      Photos from Pexels
+
+    </div>
+
+
+    <div class="destination-images">
+
+      ${slides}
+
+
+      <!-- IMAGE COUNTER -->
+
+      <div
+        class="image-counter"
+        id="imageCounter"
+      >
+        1 / ${selectedImages.length}
+      </div>
+
+
+      <!-- PREVIOUS -->
+
+      <button
+        class="slideshow-btn prev"
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+
+
+      <!-- NEXT -->
+
+      <button
+        class="slideshow-btn next"
+        aria-label="Next image"
+      >
+        ›
+      </button>
+
+
+      <!-- DOTS -->
+
+      <div class="slideshow-dots">
+
+        ${dots}
+
+      </div>
+
+
+      <!-- PEXELS CREDIT -->
+
+      <div class="pexels-credit">
+
+        Photo by
+        <a
+          href="${escapeHtml(
+            getPexelsPageUrl(
+              selectedImages[0].raw
+            )
+          )}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="photographer-link"
+        >
+          ${escapeHtml(
+            getPhotographer(
+              selectedImages[0].raw
+            )
+          )}
+        </a>
+
+        ·
+
+        <a
+          href="https://www.pexels.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pexels
+        </a>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  resultsEl.appendChild(gallery);
+
+
+  /* ========================================================
+     ELEMENTS
+  ======================================================== */
+
+  const slideElements =
+    gallery.querySelectorAll(
+      '.destination-slide'
+    );
+
+  const dotElements =
+    gallery.querySelectorAll(
+      '.slideshow-dot'
+    );
+
+  const counter =
+    gallery.querySelector(
+      '#imageCounter'
+    );
+
+  const photographerLink =
+    gallery.querySelector(
+      '.photographer-link'
+    );
+
+
+  let currentIndex = 0;
+
+
+  /* ========================================================
+     SHOW SLIDE
+  ======================================================== */
+
+  function showSlide(index){
+
+    if(
+      slideElements.length === 0
+    ){
+
+      return;
+
+    }
+
+
+    currentIndex =
+      (index + slideElements.length) %
+      slideElements.length;
+
+
+    slideElements.forEach(
+      (slide,i) => {
+
+        slide.classList.toggle(
+          'active',
+          i === currentIndex
+        );
+
+      }
+    );
+
+
+    dotElements.forEach(
+      (dot,i) => {
+
+        dot.classList.toggle(
+          'active',
+          i === currentIndex
+        );
+
+      }
+    );
+
+
+    if(counter){
+
+      counter.textContent =
+        `${currentIndex + 1} / ${slideElements.length}`;
+
+    }
+
+
+    /*
+       Update photographer attribution
+       for the currently displayed photo.
+    */
+
+    const currentImage =
+      selectedImages[currentIndex];
+
+    if(
+      currentImage &&
+      photographerLink
+    ){
+
+      photographerLink.textContent =
+        getPhotographer(
+          currentImage.raw
+        );
+
+      photographerLink.href =
+        getPexelsPageUrl(
+          currentImage.raw
+        );
+
+    }
+
+  }
+
+
+  /* ========================================================
+     PREVIOUS
+  ======================================================== */
+
+  const previousButton =
+    gallery.querySelector(
+      '.slideshow-btn.prev'
+    );
+
+  previousButton.addEventListener(
+    'click',
+    () => {
+
+      showSlide(
+        currentIndex - 1
+      );
+
+      restartAutoSlide();
+
+    }
+  );
+
+
+  /* ========================================================
+     NEXT
+  ======================================================== */
+
+  const nextButton =
+    gallery.querySelector(
+      '.slideshow-btn.next'
+    );
+
+  nextButton.addEventListener(
+    'click',
+    () => {
+
+      showSlide(
+        currentIndex + 1
+      );
+
+      restartAutoSlide();
+
+    }
+  );
+
+
+  /* ========================================================
+     DOTS
+  ======================================================== */
+
+  dotElements.forEach(
+    dot => {
+
+      dot.addEventListener(
+        'click',
+        () => {
+
+          const index =
+            Number(
+              dot.dataset.index
+            );
+
+          showSlide(index);
+
+          restartAutoSlide();
+
+        }
+      );
+
+    }
+  );
+
+
+  /* ========================================================
+     IMAGE ERROR HANDLING
+  ======================================================== */
+
+  slideElements.forEach(
+    slide => {
+
+      slide.addEventListener(
+        'error',
+        () => {
+
+          console.warn(
+            'Could not load Pexels image:',
+            slide.src
+          );
+
+          slide.style.display =
+            'none';
+
+        }
+      );
+
+    }
+  );
+
+
+  /* ========================================================
+     AUTOMATIC SLIDESHOW
+  ======================================================== */
+
+  let autoSlide =
+    setInterval(
+      () => {
+
+        showSlide(
+          currentIndex + 1
+        );
+
+      },
+      4000
+    );
+
+
+  function restartAutoSlide(){
+
+    clearInterval(autoSlide);
+
+    autoSlide =
+      setInterval(
+        () => {
+
+          showSlide(
+            currentIndex + 1
+          );
+
+        },
+        4000
+      );
+
+  }
+
+
+  /* ========================================================
+     PAUSE WHILE MOUSE IS OVER IMAGE
+  ======================================================== */
+
+  const imageContainer =
+    gallery.querySelector(
+      '.destination-images'
+    );
+
+
+  imageContainer.addEventListener(
+    'mouseenter',
+    () => {
+
+      clearInterval(autoSlide);
+
+    }
+  );
+
+
+  imageContainer.addEventListener(
+    'mouseleave',
+    () => {
+
+      restartAutoSlide();
+
+    }
+  );
+
+
+  /* ========================================================
+     TOUCH / SWIPE SUPPORT
+  ======================================================== */
+
+  let touchStartX = 0;
+
+  let touchEndX = 0;
+
+
+  imageContainer.addEventListener(
+    'touchstart',
+    event => {
+
+      touchStartX =
+        event.changedTouches[0].screenX;
+
+    },
+    { passive:true }
+  );
+
+
+  imageContainer.addEventListener(
+    'touchend',
+    event => {
+
+      touchEndX =
+        event.changedTouches[0].screenX;
+
+      const difference =
+        touchStartX - touchEndX;
+
+
+      if(Math.abs(difference) < 40){
+
+        return;
+
+      }
+
+
+      if(difference > 0){
+
+        showSlide(
+          currentIndex + 1
+        );
+
+      }else{
+
+        showSlide(
+          currentIndex - 1
+        );
+
+      }
+
+      restartAutoSlide();
+
+    },
+    { passive:true }
+  );
+
+
+  /*
+     Make sure first slide has correct
+     photographer information.
+  */
+
+  showSlide(0);
+
+}
+
+
+/* ============================================================
+   RENDER FINAL RESULT
+============================================================ */
+
+function renderResult(data){
+
+  resultsEl.innerHTML = '';
+
+
+  const success =
+    data.success !== false;
+
+
+  /* ========================================================
+     STATUS
+  ======================================================== */
+
+  const banner =
+    document.createElement('div');
+
+  banner.className =
+    `status-banner ${
+      success ? 'ok' : 'err'
+    }`;
+
+
+  banner.textContent =
+    success
+
+      ? '✓ plan received from the agent pipeline'
+
+      : `✕ ${
+          data.error ||
+          'the pipeline could not complete the request'
+        }${
+          data.details
+            ? ' — ' + data.details
+            : ''
+        }`;
+
+
+  resultsEl.appendChild(banner);
+
+
+  /* ========================================================
+     PEXELS DESTINATION GALLERY
+  ======================================================== */
+
+  if(
+    data.destination_image_data
+  ){
+
+    renderDestinationGallery(
+      data.destination_image_data
+    );
+
+  }
+
+
+  /* ========================================================
+     FINAL TRIP PLAN
+  ======================================================== */
+
+  if(
+    data.final_output !== undefined &&
+    data.final_output !== null
+  ){
+
+    addCard(
+      'Trip Plan',
+      renderValue(
+        data.final_output
+      )
+    );
+
+  }else if(!success){
+
+    if(data.pending_tasks){
+
+      addCard(
+        'Stuck On',
+        renderValue(
+          data.pending_tasks
+        )
+      );
+
+    }
+
+
+    if(data.completed_steps){
+
+      addCard(
+        'Completed Before Failure',
+        renderValue(
+          data.completed_steps
+        )
+      );
+
+    }
+
+  }
+
+
+  /* ========================================================
+     PLANNER BREAKDOWN
+  ======================================================== */
+
+  if(
+    data.planner_output &&
+    data.planner_output.subtasks
+  ){
+
+    addCard(
+      'Planner Breakdown',
+      renderSubtasks(
+        data.planner_output.subtasks
+      )
+    );
+
+  }
+
+
+  /* ========================================================
+     AGENT OUTPUTS
+  ======================================================== */
+
+  if(
+    data.agent_outputs &&
+    Object.keys(
+      data.agent_outputs
+    ).length
+  ){
+
+    addCard(
+      'Agent Outputs',
+      renderKv(
+        data.agent_outputs
+      )
+    );
+
+  }
+
+
+  /* ========================================================
+     LEFTOVER DATA
+  ======================================================== */
+
+  const leftoverKeys =
+    Object.keys(data)
+      .filter(
+        k =>
+          !HANDLED_KEYS.has(k) &&
+          ![
+            'error',
+            'details',
+            'pending_tasks',
+            'completed_steps'
+          ].includes(k)
+      );
+
+
+  leftoverKeys.forEach(
+    key => {
+
+      addCard(
+        titleCase(key),
+        renderValue(
+          data[key]
+        )
+      );
+
+    }
+  );
+
+
+  /* ========================================================
+     EMPTY RESPONSE
+  ======================================================== */
+
+  if(
+    resultsEl.children.length === 1
+  ){
+
+    const empty =
+      document.createElement('div');
+
+    empty.className =
+      'empty';
+
+    empty.textContent =
+      'The backend returned no plan content.';
+
+    resultsEl.appendChild(
+      empty
+    );
+
+  }
+
+
+  /* ========================================================
+     RAW RESPONSE
+  ======================================================== */
+
+  const raw =
+    document.createElement('details');
+
+  raw.className =
+    'raw';
+
+
+  raw.innerHTML = `
+
+    <summary>
+      Raw response
+    </summary>
+
+    <pre>
+${escapeHtml(
+  JSON.stringify(
+    data,
+    null,
+    2
+  )
+)}
+    </pre>
+
+  `;
+
+
+  resultsEl.appendChild(raw);
+
+
+  resultsEl.classList.add(
+    'show'
+  );
+
+}
+
+
+/* ============================================================
+   PLAN TRIP
+============================================================ */
+
+async function planTrip(){
+
+  const request =
+    reqInput.value.trim();
+
+
+  if(!request){
+
+    reqInput.focus();
+
+    return;
+
+  }
+
+
+  /* ========================================================
+     BUTTON STATE
+  ======================================================== */
+
+  launchBtn.disabled =
+    true;
+
+  launchBtn.textContent =
+    'Agents working…';
+
+
+  resultsEl.classList.remove(
+    'show'
+  );
+
+
+  buildPendingRoute();
+
+
+  try{
+
+    /* ======================================================
+       BACKEND REQUEST
+    ====================================================== */
+
+    const res =
+      await fetch(
+        `${apiBase()}/plan-trip`,
+        {
+          method:'POST',
+
+          headers:{
+            'Content-Type':
+              'application/json'
+          },
+
+          body:
+            JSON.stringify({
+              request:request
+            })
+        }
+      );
+
+
+    if(!res.ok){
+
+      throw new Error(
+        `Backend returned HTTP ${res.status}`
+      );
+
+    }
+
+
+    const data =
+      await res.json();
+
+
+    /* ======================================================
+       PIPELINE
+    ====================================================== */
+
+    buildRouteFromLog(
+      data.execution_log
+    );
+
+
+    /* ======================================================
+       RESULT
+    ====================================================== */
+
+    renderResult(
+      data
+    );
+
+
+    /*
+       Scroll to results after the
+       backend finishes.
+    */
+
+    setTimeout(
+      () => {
+
+        resultsEl.scrollIntoView({
+          behavior:'smooth',
+          block:'start'
+        });
+
+      },
+      100
+    );
+
+
+  }catch(err){
+
+    console.error(
+      'Travel planner error:',
+      err
+    );
+
+
+    routeTitle.textContent =
+      'Pipeline (request failed)';
+
+
+    renderResult({
+
+      success:false,
+
+      error:
+        'Could not reach the backend.',
+
+      details:
+        String(err)
+
+    });
+
+  }finally{
+
+    launchBtn.disabled =
+      false;
+
+    launchBtn.textContent =
+      'Send to the agents →';
+
+  }
+
+}
+
+
+/* ============================================================
+   BUTTON
+============================================================ */
+
+launchBtn.addEventListener(
+  'click',
+  planTrip
+);
+
+
+/* ============================================================
+   CTRL + ENTER
+============================================================ */
+
+reqInput.addEventListener(
+  'keydown',
+  event => {
+
+    if(
+      event.key === 'Enter' &&
+      (event.ctrlKey || event.metaKey)
+    ){
+
+      event.preventDefault();
+
+      planTrip();
+
+    }
+
+  }
+);
+
+
+/* ============================================================
+   INITIAL HEALTH CHECK
+============================================================ */
+
+checkHealth();
+
+</script>
+
+</body>
+</html>
