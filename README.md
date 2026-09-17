@@ -15,7 +15,11 @@ An AI-powered travel planning application built on a **multi-agent architecture*
 # 🏗️ Architecture
  
 The TravelAI platform follows a custom multi-agent architecture in which a FastAPI backend coordinates specialized travel-planning agents. The system uses a **Planner Agent** to dynamically determine the required subtasks and their dependencies, while **Shared Memory** enables agents to access outputs produced by previous steps.
- 
+
+<p align="center">
+  <img src="architecure_diagram.png" alt="AI Multi-Agent Travel Planning Platform – System Architecture" width="100%">
+</p>
+
 ## Architecture Overview
  
 The system consists of the following major layers:
@@ -36,8 +40,6 @@ The system consists of the following major layers:
 - **External Services** — Pexels provides destination images and Geoapify provides places and points-of-interest data.
 - **Data Layer** — Local CSV/JSON destination data and transportation rates are available to the application.
 
-
-
 ### How a request flows through the system
 
 1. `POST /plan-trip` receives `{ "request": "<user's travel request>" }`.
@@ -47,7 +49,6 @@ The system consists of the following major layers:
 5. The Orchestrator executes the plan step by step, resolving dependencies, passing each agent the original request, prior agents' outputs, and destination image data.
 6. Each agent's `run()` is wrapped by `BaseAgent.execute()`, which adds timing, error handling, and a consistent `{agent, status, task, output, execution_time}` response shape.
 7. Once all subtasks complete, the **Response Agent**'s output (if included in the plan) becomes the `final_output`, and the full result — including all agent outputs and the execution log — is returned to the frontend.
-
 ## 🔌 API Endpoints
 
 | Method | Endpoint      | Description                                      |
