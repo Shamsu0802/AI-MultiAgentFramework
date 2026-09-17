@@ -11,47 +11,32 @@ An AI-powered travel planning application built on a **multi-agent architecture*
 - **LLM-powered reasoning** via Groq (`llama-3.1-8b-instant`).
 - Simple static frontend (`frontend/`) that talks to the backend over REST.
 
-## 🏗️ Architecture
 
-```
-Final_pro/
-├── app/
-│   ├── agents/
-│   │   ├── base_agent.py            # Abstract base class all agents inherit from
-│   │   ├── planner_agent.py         # Breaks the user request into subtasks
-│   │   ├── research_agent.py        # Destination research
-│   │   ├── transportation_agent.py  # Transport options/routes
-│   │   ├── accommodation_agent.py   # Lodging suggestions
-│   │   ├── budget_agent.py          # Cost estimation
-│   │   ├── itinerary_agent.py       # Day-by-day itinerary building
-│   │   ├── review_agent.py          # Reviews/validates the plan
-│   │   └── response_agent.py        # Produces the final user-facing response
-│   ├── core/
-│   │   ├── agent_registry.py        # Registers agents and exposes them to the Planner
-│   │   └── orchestrator.py          # Runs the full multi-agent workflow
-│   ├── llm/
-│   │   ├── llm_manager.py           # Thin wrapper around the LLM client
-│   │   └── groq_client.py           # Groq API client (llama-3.1-8b-instant)
-│   ├── memory/
-│   │   └── shared_memory.py         # In-memory store shared across agents in a run
-│   ├── tools/
-│   │   └── geoapify_tool.py         # Geoapify Places API wrapper
-│   ├── data/
-│   │   ├── destinations.csv
-│   │   └── destinations.json
-│   ├── transportation_rates.csv
-│   └── main.py                      # FastAPI app, routes, CORS, static file mounting
-├── frontend/
-│   ├── index.html
-│   ├── script.js
-│   ├── style.css
-│   └── public/destinations/         # Local destination images (by city)
-├── tests/
-│   └── test_places.py               # Manual script to test Geoapify integration
-├── .env                             # API keys (not committed)
-├── .gitignore
-└── requirements.txt
-```
+# 🏗️ Architecture
+ 
+The TravelAI platform follows a custom multi-agent architecture in which a FastAPI backend coordinates specialized travel-planning agents. The system uses a **Planner Agent** to dynamically determine the required subtasks and their dependencies, while **Shared Memory** enables agents to access outputs produced by previous steps.
+ 
+## Architecture Overview
+ 
+The system consists of the following major layers:
+ 
+- **Frontend Layer** — A vanilla HTML/CSS/JavaScript interface that collects the user's travel request and displays the generated travel plan.
+- **Backend Layer** — A FastAPI application that exposes REST endpoints, validates requests, and manages the travel-planning workflow.
+- **Multi-Agent Layer** — Eight specialized agents coordinate through the custom Orchestrator:
+  - Planner Agent
+  - Research Agent
+  - Transportation Agent
+  - Accommodation Agent
+  - Budget Agent
+  - Itinerary Agent
+  - Review Agent
+  - Response Agent
+- **LLM Layer** — Groq API with the `llama-3.1-8b-instant` model provides LLM-powered reasoning for the agents.
+- **Shared Memory** — An in-process `SharedMemory` component stores the user's request and outputs from previous agents during a planning run.
+- **External Services** — Pexels provides destination images and Geoapify provides places and points-of-interest data.
+- **Data Layer** — Local CSV/JSON destination data and transportation rates are available to the application.
+
+
 
 ### How a request flows through the system
 
