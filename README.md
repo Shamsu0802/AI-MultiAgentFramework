@@ -1,4 +1,4 @@
-# TravelAI — AI Multi-Agent Travel Planner
+# Roameo — AI Multi-Agent Travel Planner
 
 An AI-powered travel planning application built on a **multi-agent architecture**. A FastAPI backend orchestrates eight specialized agents (planning, research, transportation, accommodation, budgeting, itinerary building, review, and final response generation), backed by Groq's LLM API, with a vanilla HTML/CSS/JS frontend.
 
