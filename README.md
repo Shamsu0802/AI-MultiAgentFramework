@@ -17,7 +17,7 @@ An AI-powered travel planning application built on a **multi-agent architecture*
 The TravelAI platform follows a custom multi-agent architecture in which a FastAPI backend coordinates specialized travel-planning agents. The system uses a **Planner Agent** to dynamically determine the required subtasks and their dependencies, while **Shared Memory** enables agents to access outputs produced by previous steps.
 
 <p align="center">
-  <img src="architecure_diagram.png" alt="AI Multi-Agent Travel Planning Platform – System Architecture" width="100%">
+  <img src="architecture_diagram.png" alt="AI Multi-Agent Travel Planning Platform – System Architecture" width="100%">
 </p>
 
 ## Architecture Overview
