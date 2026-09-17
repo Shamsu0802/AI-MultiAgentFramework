@@ -2,7 +2,7 @@
 
 An AI-powered travel planning application built on a **multi-agent architecture**. A FastAPI backend orchestrates eight specialized agents (planning, research, transportation, accommodation, budgeting, itinerary building, review, and final response generation), backed by Groq's LLM API, with a vanilla HTML/CSS/JS frontend.
 
-## ✨ Features
+##  Features
 
 - **Dynamic multi-agent orchestration** — a Planner Agent analyzes the user's request and generates a step-by-step execution plan (with dependencies) that the Orchestrator executes agent-by-agent.
 - **Shared memory** between agents so each agent can access the outputs of previous steps.
@@ -12,7 +12,7 @@ An AI-powered travel planning application built on a **multi-agent architecture*
 - Simple static frontend (`frontend/`) that talks to the backend over REST.
 
 
-# 🏗️ Architecture
+# Architecture
  
 The TravelAI platform follows a custom multi-agent architecture in which a FastAPI backend coordinates specialized travel-planning agents. The system uses a **Planner Agent** to dynamically determine the required subtasks and their dependencies, while **Shared Memory** enables agents to access outputs produced by previous steps.
 
@@ -49,7 +49,7 @@ The system consists of the following major layers:
 5. The Orchestrator executes the plan step by step, resolving dependencies, passing each agent the original request, prior agents' outputs, and destination image data.
 6. Each agent's `run()` is wrapped by `BaseAgent.execute()`, which adds timing, error handling, and a consistent `{agent, status, task, output, execution_time}` response shape.
 7. Once all subtasks complete, the **Response Agent**'s output (if included in the plan) becomes the `final_output`, and the full result — including all agent outputs and the execution log — is returned to the frontend.
-## 🔌 API Endpoints
+##  API Endpoints
 
 | Method | Endpoint      | Description                                      |
 |--------|---------------|---------------------------------------------------|
@@ -68,7 +68,7 @@ POST /plan-trip
 
 Static destination images (if present locally) are also served from `/destinations/<city>/<file>.jpg`.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Backend:** Python 3.10, FastAPI, Uvicorn
 - **LLM:** Groq API (`llama-3.1-8b-instant`)
@@ -77,7 +77,7 @@ Static destination images (if present locally) are also served from `/destinatio
 - **Frontend:** Plain HTML, CSS, JavaScript
 - **Other libraries:** `requests`, `python-dotenv`, `pydantic`
 
-## ⚙️ Setup & Installation
+##  Setup & Installation
 
 ### Prerequisites
 - Python 3.10+
@@ -123,7 +123,7 @@ The API will be available at `http://127.0.0.1:8000`.
 ### 6. Launch the frontend
 Open `frontend/index.html` directly in your browser, or serve it with a local server / VS Code Live Server. CORS is fully open on the backend, so it will work either way.
 
-## 🧪 Testing
+##  Testing
 
 A manual test script for the Geoapify integration is included:
 ```bash
@@ -131,12 +131,9 @@ python tests/test_places.py
 ```
 This queries points of interest around Ooty as a sanity check for the `GeoapifyTool`.
 
-## 📝 Notes
+##  Notes
 
 - `SharedMemory` is in-process and reset (`.clear()`) at the start of every `/plan-trip` call — it is not persisted between requests or across server restarts.
 - Destination detection is dynamic: the Orchestrator looks for a `destination` field anywhere in the Planner's structured output, and falls back to pattern matching over the raw user text (e.g. "trip to Ooty", "from Chennai to Goa") if needed.
 - Never commit your `.env` file — it's already excluded via `.gitignore`.
 
-## 📄 License
-
-Add your preferred license here (e.g., MIT).
